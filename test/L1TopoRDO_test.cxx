@@ -164,11 +164,11 @@ void test9()
   std::cout << rdo1 << rdo2;
   // construct reference value - complicated by 128 bit length
   std::pair< std::bitset<128>, std::bitset<128> > test, ref;
-  uint64_t ref1=0x00b00230f6100100;
-  uint64_t ref2=0x794528028300abd1;
+  uint64_t ref1=0x00b0f61002300100;
+  uint64_t ref2=0x794583002802abd1;
   ref.first  = std::bitset<128>(ref1) | (std::bitset<128>(ref2) << 64);
-  uint64_t ref3=0x0807040306050201;
-  uint64_t ref4=0x8070403060502010;
+  uint64_t ref3=0x0807060504030201;
+  uint64_t ref4=0x8070605040302010;
   ref.second = std::bitset<128>(ref3) | (std::bitset<128>(ref4) << 64);
   // compute bitset using helper function and compare to expected result
   L1TopoRDOCollection colRDOs;

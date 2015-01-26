@@ -63,7 +63,7 @@ namespace L1Topo{
 
   unsigned int triggerBitIndex(uint32_t moduleId, L1Topo::L1TopoTOB c){
     uint32_t module = (moduleId >>4) & 0x1;
-    uint32_t index = 64*module + 32*c.clock() + 16*c.fpga() + 8*c.index();
+    uint32_t index = 64*module + 32*c.fpga() + 16*c.clock() + 8*c.index();
     return index;
   }
 

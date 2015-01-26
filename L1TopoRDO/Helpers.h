@@ -39,16 +39,17 @@ namespace L1Topo {
     L1TOPO_TOB=0x8
   } BlockTypes;
 
-  //! function to return the block type of a data word from L1Topo
+  //! Function to return the block type of a data word from L1Topo
   unsigned int blockType(const uint32_t);
 
-  //! helper function to format a 32-bit integer as an 8-digit hex number for printing 
+  //! Helper function to format a 32-bit integer as an 8-digit hex number for printing 
   std::string formatHex8(uint32_t word);
 
-  //! helper to calculate the index needed to pack trigger bits into the full 128-bit decision
+  //! Helper to calculate the index needed to pack trigger bits into the full 128-bit decision. See 4-bit part of L1Topo TOB definition in https://twiki.cern.ch/twiki/pub/Atlas/L1CaloUpgrade/ROD_data_format_v1.0.4.xlsx
+
   unsigned int triggerBitIndex(uint32_t moduleId, L1Topo::L1TopoTOB);
 
-  //! get the trigger decision and overflow bits from the L1Topo ROI data block 'L1Topo TOB' and order them correctly in a bitset. Reference needed for layout.
+  //! Get the trigger decision and overflow bits from the L1Topo ROI data block 'L1Topo TOB' and order them correctly in a bitset. Reference needed for layout.
   //std::pair< std::bitset<128>,std::bitset<128> > getDecisionAndOverflowBits(const std::vector<L1TopoResult>&);
   std::pair< std::bitset<128>,std::bitset<128> > getDecisionAndOverflowBits(const L1TopoRDOCollection&);
 

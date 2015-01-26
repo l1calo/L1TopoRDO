@@ -1,5 +1,15 @@
 2015-01-26  Simon George  <s.george@rhul.ac.uk>
 
+	* src/Helpers.cxx,.h:
+	triggerBitIndex changed to match new understanding of hardware, i.e.
+	index = 64*module + 32*c.fpga() + 16*c.clock() + 8*c.index();
+	(fpga and clock were previously the other way around).
+	* test/L1TopoRDO_test.cxx (test9): update unit test to match this
+
+	* L1TopoRDO-00-00-02
+
+2015-01-26  Simon George  <s.george@rhul.ac.uk>
+
 	* Package created
 	* L1TopoRDO-00-00-01
 
