@@ -1,3 +1,15 @@
+2015-01-27  Simon George  <s.george@rhul.ac.uk>
+
+	* src/Helpers.cxx: remove debug printout to stdout
+
+	* share/L1TopoRDO_test.ref: updated unit test references
+
+	* src/L1TopoRDO.cxx;L1TopoRDO/L1TopoRDO.h: initialise m_sourceID
+	to zero and remove m_versionNumber; add dump method for use by
+	RoIBResult via L1TopoResult.
+
+	* L1TopoRDO-00-00-03
+
 2015-01-26  Simon George  <s.george@rhul.ac.uk>
 
 	* src/Helpers.cxx,.h:

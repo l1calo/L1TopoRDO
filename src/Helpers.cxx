@@ -84,11 +84,11 @@ namespace L1Topo{
     std::bitset<128> decision;
     std::bitset<128> overflow;
 
-    std::cout << "L1Topo::getDecisionAndOverflowBits: number of RDOs " << col.size() << std::endl;
+    //std::cout << "L1Topo::getDecisionAndOverflowBits: number of RDOs " << col.size() << std::endl;
     
     for (L1TopoRDOCollection::const_iterator pRDO = col.begin(); pRDO != col.end(); ++pRDO){
       const std::vector<uint32_t> data = (*pRDO)->getDataWords();
-      std::cout << "L1Topo::getDecisionAndOverflowBits: number of data words " << data.size() << std::endl;
+      //std::cout << "L1Topo::getDecisionAndOverflowBits: number of data words " << data.size() << std::endl;
       for(auto & word: data){
 	if (L1Topo::blockType(word) == L1Topo::BlockTypes::L1TOPO_TOB){
 	  L1Topo::L1TopoTOB c(word);
@@ -97,13 +97,13 @@ namespace L1Topo{
 	  const uint32_t triggerByte = c.trigger_bits();
 	  const uint32_t overflowByte = c.overflow_bits();
 	  // Take one bit at a time and set it in the bitset
-	  std::cout << "L1Topo::getDecisionAndOverflowBits: " << c;
+	  //std::cout << "L1Topo::getDecisionAndOverflowBits: " << c;
 	  for (unsigned int i=0; i<8; ++i){
 	    decision[index+i]=( triggerByte >>i)&1;
 	    overflow[index+i]=(overflowByte >>i)&1;
 	  }
-	  std::cout << " index " << index << " updated decision " << decision << std::endl;
-	  std::cout << " index " << index << " updated overflow " << overflow << std::endl;
+	  //std::cout << " index " << index << " updated decision " << decision << std::endl;
+	  //std::cout << " index " << index << " updated overflow " << overflow << std::endl;
 	}
 	else{
 	  //std::cout << "L1Topo::getDecisionAndOverflowBits: skipping block as not L1Topo_TOB " << L1Topo::formatHex8(word) << std::endl;

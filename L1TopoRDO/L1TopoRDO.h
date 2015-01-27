@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <string>
 
 /**
  * @short The class that represents the raw data received from an L1Topo board.
@@ -43,11 +44,13 @@ class L1TopoRDO {
   unsigned int getSourceID() const;
   //! set the source identifier
   void setSourceID(const unsigned int);
+  //! terse printout method used by RoIBResult
+  const std::string dump() const;
 
  private:
   std::vector<uint32_t> m_dataWords;
   std::vector<uint32_t> m_statusWords;
-  unsigned int m_versionNumber;
+  //unsigned int m_versionNumber;
   unsigned int m_error;
   unsigned int m_sourceID;
 };

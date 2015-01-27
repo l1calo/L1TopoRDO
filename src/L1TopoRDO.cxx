@@ -2,12 +2,15 @@
 
 #include <cstdint>
 #include <vector>
+#include <sstream>
+#include <iomanip>
+#include <string>
 
 L1TopoRDO::L1TopoRDO():
-  m_versionNumber(0),
-  m_error(0)
+  m_error(0),
+  m_sourceID(0)
 {
-  m_dataWords.push_back(0);
+  //m_dataWords.push_back(0);
 }
 
 L1TopoRDO::~L1TopoRDO()
@@ -53,4 +56,16 @@ unsigned int L1TopoRDO::getSourceID() const
 void L1TopoRDO::setSourceID(const unsigned int id)
 {
   m_sourceID=id;
+}
+
+
+const std::string L1TopoRDO::dump() const
+{
+  std::ostringstream s;
+  s << " ";
+  for (auto & word: m_dataWords){
+    s << std::hex << std::showbase << std::setfill('0') << std::setw(8) 
+      << word << " " << std::dec << std::noshowbase;
+  }
+  return s.str();
 }
