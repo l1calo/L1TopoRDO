@@ -1,3 +1,10 @@
+2015-02-10  Simon George  <S.George@rhul.ac.uk>
+
+	* Add Error, Status and Fibre classes
+	* Move BlockTypes from Helpers to own file
+	* Updated unit tests & references
+	* L1TopoRDO-00-00-04
+
 2015-01-27  Simon George  <s.george@rhul.ac.uk>
 
 	* src/Helpers.cxx: remove debug printout to stdout

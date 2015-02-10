@@ -1,4 +1,5 @@
 #include "L1TopoRDO/Header.h"
+#include "L1TopoRDO/BlockTypes.h"
 #include "L1TopoRDO/Helpers.h"
 //#include <cassert>
 
@@ -32,7 +33,7 @@ namespace L1Topo {
   }
 
   void Header::encode(){
-    m_word = L1Topo::BlockTypes::HEADER << 28;
+    m_word = static_cast<int>(L1Topo::BlockTypes::HEADER) << 28;
     m_word |= m_bcn_sign & 0x1;
     m_word |= (m_bcn_offset & 0x7) << 1;
     m_word |= (m_last_block & 0x1) << 4;
@@ -92,7 +93,7 @@ std::ostream& operator<<(std::ostream& os, const L1Topo::Header& h) {
      << std::dec
      << " fpga " << h.fpga()
      << " relative bcn " << h.bcn()
-     << " last_block " << h.last_block() << "\n";
+     << " last_block " << h.last_block();
   return os;
 }
 
