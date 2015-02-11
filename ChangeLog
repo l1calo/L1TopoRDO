@@ -1,3 +1,11 @@
+2015-02-11  Simon George  <S.George@rhul.ac.uk>
+
+	* src/Fibre.cxx: change vector element access from [i] to .at(i)
+	so it is bounds-checked.
+	* test/L1TopoRDO_test.cxx: minor output formatting
+
+
+
 2015-02-10  Simon George  <S.George@rhul.ac.uk>
 
 	* Add Error, Status and Fibre classes

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "L1TopoRDO/Fibre.h"
 #include "L1TopoRDO/Helpers.h"
@@ -22,8 +23,8 @@ namespace L1Topo {
      // assert(status.size()<=5);
      // assert(status.size()==count.size());
      for (unsigned int i=0; i<5 && i<m_status.size() && i<m_count.size(); ++i){
-       // assert(m_count[i]<0x10); // should not exceed 4 bits
-       uint32_t fibre = (m_status[i] & 0x1) << 4 | (m_count[i] & 0xf) ;
+       // assert(m_count.at(i)<0x10); // should not exceed 4 bits
+       uint32_t fibre = (m_status.at(i) & 0x1) << 4 | (m_count.at(i) & 0xf) ;
        m_word |= (fibre << (((4-i)*5)+3) );
      }
   }
@@ -31,8 +32,8 @@ namespace L1Topo {
   void Fibre::decode(){
     for (unsigned int i=0; i<5; ++i){
       uint32_t fibre = m_word >> (((4-i)*5)+3) & 0x1f;
-      m_status[i] = (fibre >> 4) & 0x1;
-      m_count[i] = fibre & 0xf;
+      m_status.at(i) = (fibre >> 4) & 0x1;
+      m_count.at(i) = fibre & 0xf;
     }
   }
   
@@ -54,7 +55,7 @@ std::ostream& operator<<(std::ostream& os, const L1Topo::Fibre& f) {
 
   os << "     Fibre status,sizes: ";
   for (unsigned int i=0; i<5 && i<f.status().size() && i<f.count().size(); ++i){
-    os << "(" << f.status()[i] << "," << f.count()[i] << ") ";
+    os << "(" << f.status().at(i) << "," << f.count().at(i) << ") ";
   }
   return os;
 }
