@@ -1,3 +1,10 @@
+2015-02-12  Simon George  <S.George@rhul.ac.uk>
+
+	* src/Helpers.cxx: save & restore ostream state in print helper
+	functions, using boost::io::ios_all_saver. Fixes ATR-10179 CID 29057.
+
+	* L1TopoRDO-00-00-05
+
 2015-02-11  Simon George  <S.George@rhul.ac.uk>
 
 	* src/Fibre.cxx: change vector element access from [i] to .at(i)
