@@ -1,3 +1,12 @@
+2015-03-06  Simon George  <s.george@rhul.ac.uk>
+
+	* test/L1TopoRDO_test.cxx (test14): add test for ModuleID class and update reference
+	* src/Helpers.cxx: add module type to printout
+	* src/L1TopoRDO.cxx: add isDAQModule, isROIModule methods
+	* src/ModuleID.cxx: add class to decode/encode the L1Topo module
+	ID, implementing the numbering scheme agreed with experts.
+	* L1TopoRDO-00-00-06
+
 2015-02-12  Simon George  <S.George@rhul.ac.uk>
 
 	* src/Helpers.cxx: save & restore ostream state in print helper

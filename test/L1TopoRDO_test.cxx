@@ -8,6 +8,7 @@
 #include "L1TopoRDO/Helpers.h"
 #include "L1TopoRDO/Error.h"
 #include "L1TopoRDO/BlockTypes.h"
+#include "L1TopoRDO/ModuleID.h"
 #include <iostream>
 #include <cassert>
 #include <cstdint>
@@ -250,7 +251,6 @@ void test12()
 void test13()
 {
   std::cout << "** test13: L1Topo::Status encode+decode **\n";
-  ; // word that matches the above values 0x1101 0000 0100 0100 0000 0110 0110 1000 = 0xd0440668
   assert (L1Topo::Status(1,1).word()==uint32_t(0xec000000));
   assert (L1Topo::Status(1,0).word()==uint32_t(0xe8000000));
   assert (L1Topo::Status(0,1).word()==uint32_t(0xe4000000));
@@ -263,6 +263,54 @@ void test13()
 
 }
 
+
+void test14()
+{
+  std::cout << "** test14: L1Topo::ModuleID encode+decode **\n";
+  // Test 4 actual use cases
+  L1Topo::ModuleID a(0x0080);
+  std::cout << a << std::endl;
+  assert (a.module()==0 && a.link()==0 && a.isROI());
+
+  L1Topo::ModuleID b(0x0001);
+  std::cout << b << std::endl;
+  assert (b.module()==0 && b.link()==1 && b.isDAQ());
+
+  L1Topo::ModuleID c(static_cast<uint16_t>(0x00910090));
+  std::cout << c << std::endl;
+  assert (c.module()==1 && c.link()==0 && c.isROI());
+
+  L1Topo::ModuleID d(0x00910011); // build warning due to implicit truncation to 16 bits
+  std::cout << d << std::endl;
+  assert (d.module()==1 && d.link()==1 && d.isDAQ());
+
+  L1Topo::ModuleID e(0,0,1); // link, module, roiDaq
+  std::cout << e << std::endl;
+  assert(e.id()==a.id());
+
+  L1Topo::ModuleID f(1,0,0);
+  std::cout << f << std::endl;
+  assert(f.id()==b.id());
+
+  L1Topo::ModuleID g(0,1,1);
+  std::cout << g << std::endl;
+  assert(g.id()==c.id());
+
+  L1Topo::ModuleID h(1,1,0);
+  std::cout << h << std::endl;
+  assert(h.id()==d.id());
+
+  // check isDAQ and isROI are opposites
+  assert(f.isDAQ() != f.isROI());
+  assert(h.isDAQ() != h.isROI());
+
+  // check use in L1TopoRDO also works
+  L1TopoRDO r1,r2;
+  r1.setSourceID(0x00910080);
+  r2.setSourceID(0x00910001);
+  assert(r1.isROIModule());
+  assert(r2.isDAQModule());
+}
 
 int main()
 { 
@@ -279,5 +327,6 @@ int main()
   test11();
   test12();
   test13();
+  test14();
   return 0;
 }
