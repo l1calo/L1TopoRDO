@@ -268,37 +268,45 @@ void test14()
 {
   std::cout << "** test14: L1Topo::ModuleID encode+decode **\n";
   // Test 4 actual use cases
-  L1Topo::ModuleID a(0x0080);
+  L1Topo::ModuleID a(0x0000);
   std::cout << a << std::endl;
-  assert (a.module()==0 && a.link()==0 && a.isROI());
+  assert (a.module()==0 && a.link()==0 && a.isDAQ());
 
-  L1Topo::ModuleID b(0x0001);
+  L1Topo::ModuleID b(0x0081);
   std::cout << b << std::endl;
-  assert (b.module()==0 && b.link()==1 && b.isDAQ());
+  assert (b.module()==0 && b.link()==1 && b.isROI());
 
-  L1Topo::ModuleID c(static_cast<uint16_t>(0x00910090));
+  L1Topo::ModuleID c(static_cast<uint16_t>(0x00910010));
   std::cout << c << std::endl;
-  assert (c.module()==1 && c.link()==0 && c.isROI());
+  assert (c.module()==1 && c.link()==0 && c.isDAQ());
 
-  L1Topo::ModuleID d(0x00910011); // build warning due to implicit truncation to 16 bits
+  L1Topo::ModuleID d(0x00910091); // build warning due to implicit truncation to 16 bits
   std::cout << d << std::endl;
-  assert (d.module()==1 && d.link()==1 && d.isDAQ());
+  assert (d.module()==1 && d.link()==1 && d.isROI());
 
-  L1Topo::ModuleID e(0,0,1); // link, module, roiDaq
+  L1Topo::ModuleID e(0x0092);
   std::cout << e << std::endl;
-  assert(e.id()==a.id());
+  assert (e.module()==1 && e.link()==2 && e.isROI());
 
-  L1Topo::ModuleID f(1,0,0);
+  L1Topo::ModuleID f(0,0,0); // link, module, roiDaq
   std::cout << f << std::endl;
-  assert(f.id()==b.id());
+  assert(f.id()==a.id());
 
-  L1Topo::ModuleID g(0,1,1);
+  L1Topo::ModuleID g(1,0,1);
   std::cout << g << std::endl;
-  assert(g.id()==c.id());
+  assert(g.id()==b.id());
 
-  L1Topo::ModuleID h(1,1,0);
+  L1Topo::ModuleID h(0,1,0);
   std::cout << h << std::endl;
-  assert(h.id()==d.id());
+  assert(h.id()==c.id());
+
+  L1Topo::ModuleID i(1,1,1); 
+  std::cout << i << std::endl;
+  assert(i.id()==d.id());
+
+  L1Topo::ModuleID j(2,1,1); // link, module, roiDaq
+  std::cout << j << std::endl;
+  assert(j.id()==e.id());
 
   // check isDAQ and isROI are opposites
   assert(f.isDAQ() != f.isROI());
@@ -306,8 +314,8 @@ void test14()
 
   // check use in L1TopoRDO also works
   L1TopoRDO r1,r2;
-  r1.setSourceID(0x00910080);
-  r2.setSourceID(0x00910001);
+  r1.setSourceID(0x00910081);
+  r2.setSourceID(0x00910010);
   assert(r1.isROIModule());
   assert(r2.isDAQModule());
 }

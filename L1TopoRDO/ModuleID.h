@@ -13,10 +13,12 @@ namespace L1Topo {
    *    mmm is the L1Topo module number (three bits allowing values 0-7)
    *    r is a one bit flag distingushing RoI fibres (1) from DAQ fibres (0).
    * Valid combinations according to the convention described by experts are:
-   *    module 0 link 0 RoI   1 000 0000 = 0x0080
-   *    module 0 link 1 DAQ   0 000 0001 = 0x0001
-   *    module 1 link 0 RoI   1 001 0000 = 0x0090
-   *    module 1 link 1 DAQ   0 001 0001 = 0x0011
+   *    module 0 link 0 DAQ   0 000 0000 = 0x0000
+   *    module 0 link 1 RoI   0 000 0001 = 0x0081
+   *    module 1 link 0 DAQ   1 001 0000 = 0x0010
+   *    module 1 link 1 RoI   0 001 0001 = 0x0091
+   * Link 2 may be used for the new RoIB. 
+   * A third module may be a later upgrade.
    */ 
 
   class ModuleID {

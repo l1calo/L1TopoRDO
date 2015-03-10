@@ -53,7 +53,7 @@ namespace L1Topo {
 } // namespace L1Topo
 
 std::ostream& operator<<(std::ostream& os, const L1Topo::ModuleID& m) {
-  os << "ModuleID: " << m.id() << " " << L1Topo::formatHex4(m.id()) << " 0b" << std::bitset<8>(m.id()) << " link " << m.link() << " " << " module " << m.module();
+  os << "ModuleID: " << " " << L1Topo::formatHex4(m.id()) << " 0b" << std::bitset<8>(m.id()) << " link " << m.link() << " " << " module " << m.module();
   if (m.isDAQ()){
     os << " DAQ";
   } 
