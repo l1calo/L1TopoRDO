@@ -1,3 +1,9 @@
+2015-09-25  Simon George  <S.George@rhul.ac.uk>
+
+	* changes to fix clang build, moving operator<< overload functions
+	into L1Topo namespace.
+	* L1TopoRDO-00-00-08
+
 2015-03-08  Simon George  <S.George@rhul.ac.uk>
 
 	* test/L1TopoRDO_test.cxx (test14): update ModuleID unit tests for
