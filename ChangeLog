@@ -1,3 +1,13 @@
+2015-10-29  Simon George  <S.George@rhul.ac.uk>
+
+	* src/Helpers.cxx: add triggerBitIndexNew method which does the
+	mapping to the CTP bits correctly, as discussed in ATR-12393. The
+	old method is retained but obsolete.
+	* src/L1TopoTOB.cxx: decode fgpa as bit 4 of part, was
+	bit 3, based on looking at data.
+	* test/L1TopoRDO_test.cxx: update unit tests for these changes.
+	* L1TopoRDO-00-00-09
+
 2015-09-25  Simon George  <S.George@rhul.ac.uk>
 
 	* changes to fix clang build, moving operator<< overload functions
